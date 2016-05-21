@@ -1,0 +1,27 @@
+{
+	"default_language": "en_US",
+	"availables": 
+	[
+		"en_US",
+		"fr_FR",
+		"de_DE"
+	],
+    "play_button":
+    {
+        "en_US":"Play",
+        "fr_FR":"Jouer",
+		"de_DE":"Spielen"
+    },
+    "next_button":
+    {
+        "en_US":"Next",
+        "fr_FR":"Suivant",
+		"de_DE":"Folgende"
+    },
+    "greeting_text":
+    {
+        "en_US":"Hello $name$, You are $age$",
+        "fr_FR":"Bonjour $name$, Tu as $age$ ans.",
+		"de_DE":"Hallo $name$, Sie sind $age$."
+    }
+}
