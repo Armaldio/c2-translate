@@ -95,7 +95,7 @@ AddExpression(2, ef_return_any, "Get current language", "Value", "GetCurrentLang
 AddNumberParam("Index", "The index of the language", "");
 AddExpression(3, ef_return_any, "Get language at a specific index", "Value", "GetLangAt", "Get the language available at a specific index");
 
-AddExpression(4, ef_return_any, "Get language number", "Value", "GetLangNumber", "Get the language nuùber");
+AddExpression(4, ef_return_any, "Get language number", "Value", "GetLangNumber", "Get the language number");
 ////////////////////////////////////////
 ACESDone();
 
