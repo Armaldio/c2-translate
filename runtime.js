@@ -137,8 +137,8 @@ cr.plugins_.armaldio_translate = function (runtime) {
     };
 
     Cnds.prototype.IsLanguageAvailable = function (language) {
-        console.log(dic.availables[dic.availables.indexOf(language)]);
-        return (dic.availables.indexOf(language) > -1)
+        //console.log(dic.available_language[dic.available_language.indexOf(language)]);
+        return (dic.available_language.indexOf(language) > -1)
     };
 
     pluginProto.cnds = new Cnds();
@@ -156,12 +156,12 @@ cr.plugins_.armaldio_translate = function (runtime) {
     Acts.prototype.SetLanguage = function (language) {
         console.log("Dic = " + dic);
         try {
-            console.log(dic.availables.indexOf(language) > -1);
+            console.log(dic.available_language.indexOf(language) > -1);
 
-            if (dic.availables.indexOf(language) > -1) {
+            if (dic.available_language.indexOf(language) > -1) {
 
-                dic.default_language = language;
-                console.log("changing language to " + dic.default_language);
+                dic.current_language = language;
+                console.log("changing language to " + dic.current_language);
 
             }
         }
@@ -178,17 +178,16 @@ cr.plugins_.armaldio_translate = function (runtime) {
     function Exps() {
     };
 
-    /*
-     ** TODO Not really replacing all ..
-     */
     String.prototype.replaceAll = function (target, replacement) {
         return this.split(target).join(replacement);
     };
 
     Exps.prototype.GetValue = function (ret, value, replace) {
-        console.log("default language " + dic.default_language);
-        var finalStr = dic[value][dic.default_language];
-
+        var finalStr = dic[value][dic.current_language];
+        if (!finalStr)
+            finalStr = dic[value][dic.default_language];
+        if (!finalStr)
+            finalStr = "(missing traduction for " + dic.default_language + ")";
         replace.split(";").forEach(function (repGroup) {
             var valkey = repGroup.split(":");
             finalStr = finalStr.replaceAll("$" + valkey[0] + "$", valkey[1]);
@@ -198,8 +197,11 @@ cr.plugins_.armaldio_translate = function (runtime) {
     };
 
     Exps.prototype.GetLanguageValue = function (ret, value, replace, language) {
-        console.log("default language " + dic.default_language);
-        var finalStr = dic[value][language];
+        var finalStr = dic[value][dic.language];
+        if (!finalStr)
+            finalStr = dic[value][dic.default_language];
+        if (!finalStr)
+            finalStr = "(missing traduction for " + dic.default_language + ")";
 
         replace.split(";").forEach(function (repGroup) {
             var valkey = repGroup.split(":");
@@ -214,11 +216,11 @@ cr.plugins_.armaldio_translate = function (runtime) {
     };
 
     Exps.prototype.GetLangAt = function (ret, index) {
-        ret.set_any(dic.availables[index]);
+        ret.set_any(dic.available_language[index]);
     };
 
     Exps.prototype.GetLangNumber = function (ret) {
-        ret.set_int(dic.availables.length);
+        ret.set_int(dic.available_language.length);
     };
 
     pluginProto.exps = new Exps();
