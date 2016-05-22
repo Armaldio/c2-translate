@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>C2-translate by armaldio</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>C2-translate</h1>
+          <h2>A construct 2 plugin that allow you to translate</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/armaldio/c2-translate/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/armaldio/c2-translate/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/armaldio/c2-translate" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <p>Translating a game or an app can be boring and very dificult sometimes.
+Now, with the Transalte plugin, it's a bit easy !</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>First, [download the project from github][1], then extract it to a folder in your C2/plugin folder.
+Restart construct 2.</p>
+
+<h2>
+<a id="file-format" class="anchor" href="#file-format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>File format</h2>
+
+<p>The file is JSON. If you don't know JSON, you can read about it [here][2]
+The format is simple : </p>
+
+<p>[image description][3]</p>
+
+<pre><code>default_language
+</code></pre>
+
+<p>It's the language by default, if you didn't choose anyone.</p>
+
+<pre><code>availables
+</code></pre>
+
+<p>It's the list of supported languages. Don't put a language here if you didn't translate the all the fields (NOTE : If a field is not available in the selected langauge, <strong>default_language</strong> will be used)</p>
+
+<pre><code>play_button next_button greeting_text
+</code></pre>
+
+<p>You'll have to enter these name to retrieve the according translation. Make sure you choose simple names otherwise you'll have to keep an eye every time on your transaltion file.</p>
+
+<p>Inside these names, you will have to enter the translation according to a key:value system.
+Where key is your language and value is the translation.</p>
+
+<p>I think it's all for this part :)</p>
+
+<h2>
+<a id="event-sheet" class="anchor" href="#event-sheet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event sheet</h2>
+
+<p>Now, let's go to the construct part !<br>
+The first you have to do, is to load the translation file you've just made.
+For this, there are two ways.</p>
+
+<h1>
+<a id="retrieving-the-file---local" class="anchor" href="#retrieving-the-file---local" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Retrieving the file - Local</h1>
+
+<p>Put the file inside your project files and make an AJAX request (it's a native plugin) to retrieve it's data</p>
+
+<p>Then load the retrieved value with the Load action of the transalte plugin.
+Just put <strong>AJAX.LastData</strong> inside the field.</p>
+
+<p>[image description][4]</p>
+
+<h1>
+<a id="retrieving-the-file---distant" class="anchor" href="#retrieving-the-file---distant" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Retrieving the file - Distant</h1>
+
+<p>Imagine you don't want to translate the file yourself.
+Put the file on a communautary website like github and instead of making an ajax request to a project file, make it to the raw url to the transaltion file. 
+You now just have to let people do the work on you public repository, validate  the changes and the project is translated. No need to update the project.
+CAUTION : If your project can also run offline make sure to have a copy of the file inside the project, otherwise, there probably be a problem when your user have no connection, haha ...</p>
+
+<h1>
+<a id="managing-translations" class="anchor" href="#managing-translations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Managing translations</h1>
+
+<p>[image description][5]</p>
+
+<p>Make an update function that you can call directly on the begining of the layout and also when the user change the language.</p>
+
+<p>Set the text of each of your object to 
+    Translate.GetValue("play_button", "")</p>
+
+<p>Note that this function take two parameters.
+The first parameter is the string you defined in your JSON file.
+The second parameters is to pass parameter to the string.
+In my JSON file, I have defined that a field will take parameters : 
+[image description][10]</p>
+
+<p>The parameter are between "$"
+To replace these parameters, fill the second parameter of the plugion action like this : </p>
+
+<p>"wordbetween$:variable;secondwordbetween$:variable;"
+Example : </p>
+
+<p>[image description][7]</p>
+
+<p>I think now you are ready ! If you have any questions fell free to ask on[the forum][11] or on the [c2 discord server][8]</p>
+
+<p>Enjoy ;)</p>
+
+<p>Based on a TheRealDannyyy idea.</p>
+
+<p>[1][<a href="https://github.com/armaldio/c2-translate/archive/master.zip">https://github.com/armaldio/c2-translate/archive/master.zip</a>]
+[2][<a href="https://www.wikiwand.com/fr/JavaScript_Object_Notation">https://www.wikiwand.com/fr/JavaScript_Object_Notation</a>]
+[3][<a href="https://www.scirra.com/images/articles/15NcDR95.png">https://www.scirra.com/images/articles/15NcDR95.png</a>]
+[4][<a href="https://www.scirra.com/images/articles/ajax.jpg">https://www.scirra.com/images/articles/ajax.jpg</a>]
+[5][<a href="https://www.scirra.com/images/articles/Construct">https://www.scirra.com/images/articles/Construct</a> 2 beta release r226 (Administrator) - translations.capx - Event sheet 1.png]
+[7][<a href="https://www.scirra.com/images/articles/short.png">https://www.scirra.com/images/articles/short.png</a>]
+[8][<a href="https://discord.gg/0eLPLj96B4v33etP">https://discord.gg/0eLPLj96B4v33etP</a>]
+[9][<a href="https://www.scirra.com/images/articles/ccc.png">https://www.scirra.com/images/articles/ccc.png</a>]
+[10][<a href="https://www.scirra.com/images/articles/dddd.png">https://www.scirra.com/images/articles/dddd.png</a>]
+[11][<a href="https://www.scirra.com/forum/viewtopic.php?f=153&amp;t=173194">https://www.scirra.com/forum/viewtopic.php?f=153&amp;t=173194</a>]</p>
+        </section>
+
+        <footer>
+          C2-translate is maintained by <a href="https://github.com/armaldio">armaldio</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
