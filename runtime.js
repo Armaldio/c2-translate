@@ -137,8 +137,8 @@ cr.plugins_.armaldio_translate = function (runtime) {
     };
 
     Cnds.prototype.IsLanguageAvailable = function (language) {
-        //console.log(dic.available_language[dic.available_language.indexOf(language)]);
-        return (dic.available_language.indexOf(language) > -1)
+        //console.log(dic.available_languages[dic.available_languages.indexOf(language)]);
+        return (dic.available_languages.indexOf(language) > -1)
     };
 
     pluginProto.cnds = new Cnds();
@@ -156,9 +156,9 @@ cr.plugins_.armaldio_translate = function (runtime) {
     Acts.prototype.SetLanguage = function (language) {
         console.log("Dic = " + dic);
         try {
-            console.log(dic.available_language.indexOf(language) > -1);
+            console.log(dic.available_languages.indexOf(language) > -1);
 
-            if (dic.available_language.indexOf(language) > -1) {
+            if (dic.available_languages.indexOf(language) > -1) {
 
                 dic.current_language = language;
                 console.log("changing language to " + dic.current_language);
@@ -216,11 +216,11 @@ cr.plugins_.armaldio_translate = function (runtime) {
     };
 
     Exps.prototype.GetLangAt = function (ret, index) {
-        ret.set_any(dic.available_language[index]);
+        ret.set_any(dic.available_languages[index]);
     };
 
     Exps.prototype.GetLangNumber = function (ret) {
-        ret.set_int(dic.available_language.length);
+        ret.set_int(dic.available_languages.length);
     };
 
     pluginProto.exps = new Exps();
