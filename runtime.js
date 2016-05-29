@@ -1,4 +1,4 @@
-﻿// ECMAScript 5 strict mode
+// ECMAScript 5 strict mode
 "use strict";
 
 assert2(cr, "cr namespace not created");
@@ -13,17 +13,6 @@ cr.plugins_.armaldio_translate = function (runtime) {
 };
 
 (function () {
-    var isNWjs = false;
-    var path = null;
-    var fs = null;
-    var gui = null;
-    var child_process = null;
-    var nw_appfolder = "";
-    var nw_userfolder = "";
-    var slash = "\\";
-    var filelist = [];
-    var droppedfile = "";
-    var chosenpath = "";
 
     var pluginProto = cr.plugins_.armaldio_translate.prototype;
 
@@ -38,19 +27,7 @@ cr.plugins_.armaldio_translate = function (runtime) {
 
     // called on startup for each object type
     typeProto.onCreate = function () {
-        isNWjs = this.runtime.isNWjs;
-        var self = this;
-
-        if (isNWjs) {
-            path = require("path");
-            fs = require("fs");
-            child_process = require("child_process");
-            if (process["platform"] !== "win32")
-                slash = "/";
-            nw_appfolder = path["dirname"](process["execPath"]) + slash;
-            nw_userfolder = (process["env"]["HOME"] || process["env"]["HOMEPATH"] || process["env"]["USERPROFILE"]) + slash;
-            gui = require("nw.gui");
-        }
+		
     };
 
     /////////////////////////////////////
@@ -88,21 +65,6 @@ cr.plugins_.armaldio_translate = function (runtime) {
     /**BEGIN-PREVIEWONLY**/
     instanceProto.getDebuggerValues = function (propsections) {
         var props = [];
-        props.push({
-            "name": "Key count",
-            "value": this.key_count,
-            "readonly": true,
-            "title": "NW.js",
-            "properties": [{
-                "name": "App folder",
-                "value": nw_appfolder,
-                "readonly": true
-            }, {
-                "name": "User folder",
-                "value": nw_userfolder,
-                "readonly": true
-            }]
-        });
 
         for (var p in this.dictionary) {
             if (this.dictionary.hasOwnProperty(p)) {
