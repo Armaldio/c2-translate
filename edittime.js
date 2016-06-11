@@ -86,7 +86,7 @@ AddStringParam("Parameters", "If there are $x inside the string you can replace 
 AddExpression(0, ef_return_any, "Get value", "Value", "GetValue", "Get the translation of a field based on the current language");
 
 AddStringParam("Field", "The field you want to translate", "");
-AddStringParam("Parameters", "If there are $x inside the string you can replace it with\n1:word,2:otherword", "");
+AddStringParam("Parameters", "If there are $x inside the string you can replace it with\n1:word;2:otherword", "");
 AddStringParam("Language", "The specific language", "");
 AddExpression(1, ef_return_any, "Get value from a specific language", "Value", "GetLanguageValue", "Get the translation of a field based on the specified language");
 
