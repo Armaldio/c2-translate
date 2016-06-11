@@ -20,8 +20,8 @@
     },
     "greeting_text":
     {
-        "en_US":"Hello $name$, You are $age$",
-        "fr_FR":"Bonjour $name$, Tu as $age$ ans.",
-		"de_DE":"Hallo $name$, Sie sind $age$."
+        "en_US":"Hello $name$, $nl$You are $age$",
+        "fr_FR":"Bonjour $name$, $nl$Tu as $age$ ans.",
+		"de_DE":"Hallo $name$, $nl$Sie sind $age$."
     }
 }

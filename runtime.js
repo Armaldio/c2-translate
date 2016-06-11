@@ -193,6 +193,8 @@ cr.plugins_.armaldio_translate = function (runtime) {
             finalStr = finalStr.replaceAll("$" + valkey[0] + "$", valkey[1]);
         });
 
+        finalStr = finalStr.replaceAll("$nl$", "\n");
+
         ret.set_any(finalStr);
     };
 
@@ -207,6 +209,8 @@ cr.plugins_.armaldio_translate = function (runtime) {
             var valkey = repGroup.split(":");
             finalStr = finalStr.replaceAll("$" + valkey[0] + "$", valkey[1]);
         });
+
+        finalStr = finalStr.replaceAll("$nl$", "\n");
 
         ret.set_any(finalStr);
     };
